@@ -13,15 +13,16 @@ class Note extends EntityRepository
     /**
      * @param int $firstResult
      * @param int $maxResult
+     * @param string $orderColumn
      * @param string $order
      * @return array
      */
-    public function getIntervalNews($firstResult = 0, $maxResult = 10, $order = 'ASC')
+    public function getIntervalNews($firstResult = 0, $maxResult = 10, $orderColumn = 'publish_date_time', $order = 'ASC')
     {
         $qb = $this->getEntityManager()->getConnection()->createQueryBuilder();
         $query = $qb->select('n.*')
             ->from($this->getClassMetadata()->getTableName(), 'n')
-            ->orderBy('n.publish_date_time', $order)
+            ->orderBy("n.$orderColumn", $order)
             ->setFirstResult($firstResult)
             ->setMaxResults($maxResult);
 
