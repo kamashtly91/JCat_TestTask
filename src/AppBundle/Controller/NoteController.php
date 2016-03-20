@@ -54,7 +54,7 @@ class NoteController extends Controller
      * @Route(
      *     "/view/{id}",
      *     requirements={
-     *          "page": "[1-9]\d*",
+     *          "id": "[1-9]\d*",
      *     }, name="note_view")
      */
     public function viewAction($id)
