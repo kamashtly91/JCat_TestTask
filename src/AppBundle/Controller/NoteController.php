@@ -28,7 +28,7 @@ class NoteController extends Controller
      * @return Response
      * @Method("GET")
      * @Route(
-     *     "/news/{page}/{count}/{order}",
+     *     "/list/{page}/{count}/{orderColumn}/{order}",
      *     defaults={"page": 1, "count": 10, "orderColumn": "publish_date_time", "order": "asc"},
      *     requirements={
      *          "page": "[1-9]\d*",
@@ -39,7 +39,6 @@ class NoteController extends Controller
      */
     public function listAction($page, $count,$orderColumn, $order)
     {
-        var_dump($count);
         /** @var \AppBundle\Repository\Note $noteRepository */
         $noteRepository = $this->getDoctrine()->getRepository('AppBundle:Note');
         $news = $noteRepository->getIntervalNews(($page - 1) * $count, $count, $orderColumn, $order);
